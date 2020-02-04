@@ -6,8 +6,8 @@ import {
   Route
 } from "react-router-dom";
 import { NavBar } from "./components/NavBar";
-import { Products } from "./components/Products";
-import { Cart } from "./components/Cart";
+import { Products } from "./containers/Products";
+import { Cart } from "./containers/Cart";
 import './App.css';
 
 const App = props => {
