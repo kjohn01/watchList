@@ -1,10 +1,18 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
 
 const CartItem = props => {
-    return(
-        <div>
 
+    const add = () => {};
+    const remove = () => {};
+    
+    return(
+        <div className="d-flux m-3">
+            <h2>{props.name}</h2>
+            <p>{props.quantity}</p>
+            <Button onClick={add}>Add</Button>
+            <Button onClick={remove}>Remove</Button>
         </div>
     );
 };
