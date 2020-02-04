@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import ShopContext from '../context/shop-context';
-import { Product } from '../components/Product';
+import Product from '../components/Product';
+import { Button } from 'react-bootstrap';
 
 const Products = props => {
 
@@ -14,7 +15,10 @@ const Products = props => {
         price={p.price}
         />);
     return(
-        <div className="d-flex justify-content-center">{productList}</div>
+        <div className="d-flex justify-content-center">
+            {productList}
+            <Button onClick={()=>{console.log(context.cart)}}>Show context</Button>
+        </div>
     );
 };
 

@@ -5,10 +5,10 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import { NavBar } from "./components/NavBar";
-import { Products } from "./containers/Products";
-import { Cart } from "./containers/Cart";
-import { GlobalState } from "./context/GlobalState";
+import NavBar from "./components/NavBar";
+import Products from "./containers/Products";
+import Cart from "./containers/Cart";
+import GlobalState from "./context/GlobalState";
 import './App.css';
 
 const App = props => {
