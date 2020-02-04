@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import ShopContext from './shop-context';
-import shopReducer from './reducers';
+import { shopReducer, ADD_PRODUCT, REMOVE_PRODUCT } from './reducers';
 
 const GlobalState = props => {
     const product = [
@@ -32,12 +32,12 @@ const GlobalState = props => {
 
     const [cart, dispatch] = useReducer(shopReducer, []);
 
-    const addProductToCart = () => {
-        dispatch();
+    const addProductToCart = product => {
+        dispatch({ type: ADD_PRODUCT, product });
     };
 
-    const removeProductFromCart = () => {
-        dispatch();
+    const removeProductFromCart = productId => {
+        dispatch({ type: REMOVE_PRODUCT, productId });
     };
 
     return(

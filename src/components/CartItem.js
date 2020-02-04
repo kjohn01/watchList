@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Button } from 'react-bootstrap';
+import ShopContext from '../context/shop-context';
 
 const CartItem = props => {
-
-    const add = () => {};
-    const remove = () => {};
+    const context = useContext(ShopContext);
 
     return(
         <Row className="m-3">
-            <Col md="auto"><h3>{props.name}</h3></Col>
+            <Col md="auto"><h3>{props.title}</h3></Col>
             <Col xs lg="6" className="d-flex justify-content-center">
-                <Button onClick={add}>+</Button>
+                <Button onClick={() => { context.addProductToCart(props); }}>+</Button>
                 <p>{props.quantity}</p>
-                <Button onClick={remove}>-</Button>
+                <Button onClick={() => { context.removeProductFromCart(props.id); }}>-</Button>
             </Col>
         </Row>
     );
@@ -21,7 +20,7 @@ const CartItem = props => {
 
 CartItem.propTypes = {
     id: PropTypes.string,
-    name: PropTypes.string,
+    title: PropTypes.string,
     quantity: PropTypes.number
 };
 
