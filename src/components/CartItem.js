@@ -1,19 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
+import { Row, Col, Button } from 'react-bootstrap';
 
 const CartItem = props => {
 
     const add = () => {};
     const remove = () => {};
-    
+
     return(
-        <div className="d-flux m-3">
-            <h2>{props.name}</h2>
-            <p>{props.quantity}</p>
-            <Button onClick={add}>Add</Button>
-            <Button onClick={remove}>Remove</Button>
-        </div>
+        <Row className="m-3">
+            <Col md="auto"><h3>{props.name}</h3></Col>
+            <Col xs lg="6" className="d-flex justify-content-center">
+                <Button onClick={add}>+</Button>
+                <p>{props.quantity}</p>
+                <Button onClick={remove}>-</Button>
+            </Col>
+        </Row>
     );
 };
 
