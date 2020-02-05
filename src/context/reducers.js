@@ -1,47 +1,53 @@
-export const ADD_PRODUCT = "ADD_PRODUCT";
-export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
+export const ADD_TO_PLAYLIST = "ADD_TO_PLAYLIST";
+export const REMOVE_FROM_PLAYLIST = "REMOVE_FROM_PLAYLIST";
+export const ADD_TO_WATCHED = "ADD_TO_WATCHED";
+export const REMOVE_FROM_WATCHED = "REMOVE_FROM_WATCHED";
+export const ADD_TO_LATER = "ADD_TO_LATER";
+export const REMOVE_FROM_LATER = "REMOVE_FROM_LATER";
 
-const addProductToCart = (product, cart) => {
-    let i = 0;
-    console.log("product");
-    console.log(product);
-    console.log("cart");
-    console.log(cart);
-    let updatedCart = [...cart];
-    console.log("updatedCart");
-    console.log(updatedCart);
-    if (updatedCart.length !== 0) i = updatedCart.findIndex(e => e.id === product.id);
-    console.log("i");
-    console.log(i);
-    if (i > 0) updatedCart[i].quantity++;
-    else updatedCart.push({
-        id: product.id,
-        title: product.title,
-        quantity: 1
-    });
-    return updatedCart;
+const add = (series, list) => {
+    let updatedList = [...list];
+    if (updatedList.length === 0 || updatedList.findIndex(e => e.id === series.id) <= 0) updatedList.push(series);
+    return updatedList;
 };
 
-const removeProductFromCart = (productId, cart) => {
+const remove = (seriesId, list) => {
     let i = 0;
-    let updatedCart = [...cart];
-    if (updatedCart.length !== 0) i = updatedCart.findIndex(e => e.id === productId);
-    if (i > 0 && updatedCart[i].quantity > 1) updatedCart[i].quantity--;
-    else if (i > 0 && updatedCart[i].quantity === 1) updatedCart.splice(i, 1);
-    return updatedCart;
+    let updatedList = [...list];
+    if (updatedList.length !== 0) i = updatedList.findIndex(series => series.id === seriesId);
+    if (i > 0) updatedList.splice(i, 1);
+    return updatedList;
 };
 
-export const shopReducer = (cart, action) => {
-    console.log("action");
-    console.log(action);
-    console.log("cart");
-    console.log(cart);
+export const laterReducer = (later, action) => {
     switch (action.type) {
-        case ADD_PRODUCT:
-            return addProductToCart(action.product, cart);
-        case REMOVE_PRODUCT:
-            return removeProductFromCart(action.productId, cart);
+        case ADD_TO_LATER:
+            return add(action.series, later);
+        case REMOVE_FROM_LATER:
+            return remove(action.seriesId, later);
         default:
-            return cart;
+            return later;
+    }
+};
+
+export const playlistReducer = (playlist, action) => {
+    switch (action.type) {
+        case ADD_TO_PLAYLIST:
+            return add(action.series, playlist);
+        case REMOVE_FROM_PLAYLIST:
+            return remove(action.seriesId, playlist);
+        default:
+            return playlist;
+    }
+};
+
+export const watchedReducer = (watched, action) => {
+    switch (action.type) {
+        case ADD_TO_WATCHED:
+            return add(action.series, watched);
+        case REMOVE_FROM_WATCHED:
+            return remove(action.seriesId, watched);
+        default:
+            return watched;
     }
 };

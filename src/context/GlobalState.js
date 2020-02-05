@@ -1,9 +1,9 @@
 import React, { useReducer } from 'react';
-import ShopContext from './shop-context';
-import { shopReducer, ADD_PRODUCT, REMOVE_PRODUCT } from './reducers';
+import SeriesContext from './series-context';
+import { laterReducer, playlistReducer, watchedReducer, ADD_TO_LATER, REMOVE_FROM_LATER, ADD_TO_PLAYLIST, REMOVE_FROM_PLAYLIST, ADD_TO_WATCHED, REMOVE_FROM_WATCHED } from './reducers';
 
 const GlobalState = props => {
-    const product = [
+    const InitialSeries = [
         {
             id: "001",
             title: "The Witcher",
@@ -30,28 +30,55 @@ const GlobalState = props => {
         }
     ];
 
-    const [cart, dispatch] = useReducer(shopReducer, []);
+    const [later, laterDispatch] = useReducer(laterReducer, InitialSeries);
+    const [playlist, playlistDispatch] = useReducer(playlistReducer, []);
+    const [watched, watchedDispatch] = useReducer(watchedReducer, []);
 
-    const addProductToCart = product => {
-        console.log("dispatch addProductToCart");
-        dispatch({ type: ADD_PRODUCT, product });
+    const addToLater = series => {
+        console.log("laterDispatch addToLater");
+        laterDispatch({ type: ADD_TO_LATER, series });
     };
 
-    const removeProductFromCart = productId => {
-        console.log("dispatch removeProductFromCart");
-        dispatch({ type: REMOVE_PRODUCT, productId });
+    const removeFromLater = seriesId => {
+        console.log("laterDispatch removeFromLater");
+        laterDispatch({ type: REMOVE_FROM_LATER, seriesId });
+    };
+
+    const addToPlaylist = series => {
+        console.log("playlistDispatch addToPlaylist");
+        playlistDispatch({ type: ADD_TO_PLAYLIST, series });
+    };
+
+    const removeFromPlaylist = seriesId => {
+        console.log("playlistDispatch removeFromPlaylist");
+        playlistDispatch({ type: REMOVE_FROM_PLAYLIST, seriesId });
+    };
+
+    const addToWatched = series => {
+        console.log("watchedDispatch addToWatched");
+        watchedDispatch({ type: ADD_TO_WATCHED, series });
+    };
+
+    const removeFromWatched = seriesId => {
+        console.log("watchedDispatch removeFromWatched");
+        watchedDispatch({ type: REMOVE_FROM_WATCHED, seriesId });
     };
 
     return(
-        <ShopContext.Provider 
+        <SeriesContext.Provider 
             value={{
-                product,
-                cart,
-                addProductToCart,
-                removeProductFromCart
+                later,
+                playlist,
+                watched,
+                addToLater,
+                removeFromLater,
+                addToPlaylist,
+                removeFromPlaylist,
+                addToWatched,
+                removeFromWatched
             }}>
             {props.children}
-        </ShopContext.Provider>
+        </SeriesContext.Provider>
     );
 };
 
