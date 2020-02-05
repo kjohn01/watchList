@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import SeriesContext from '../context/series-context';
 import Series from '../components/Series';
-// import { Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 const Later = props => {
 
@@ -26,7 +26,7 @@ const Later = props => {
                 ? <h1>No new series</h1>
                 : seriesList
             }
-            {/* <Button onClick={()=>{console.log(context.later)}}>Show later</Button> */}
+            <Button onClick={()=>{console.log(context.later)}}>Show later</Button>
         </div>
     );
 };

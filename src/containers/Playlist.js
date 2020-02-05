@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import SeriesContext from '../context/series-context';
 import Series from '../components/Series';
-// import { Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 const Playlist = props => {
 
@@ -32,7 +32,7 @@ const Playlist = props => {
                 ? <h1>No series in the playlist</h1>
                 : seriesList
             }
-            {/* <Button onClick={()=>{console.log(context.later)}}>Show later</Button> */}
+            <Button onClick={()=>{console.log(context.playlist)}}>Show playlist</Button>
         </div>
     );
 };

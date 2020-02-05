@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import SeriesContext from './series-context';
-import { laterReducer, playlistReducer, watchedReducer, ADD_TO_LATER, REMOVE_FROM_LATER, ADD_TO_PLAYLIST, REMOVE_FROM_PLAYLIST, ADD_TO_WATCHED, REMOVE_FROM_WATCHED } from './reducers';
+import { myReducer, ADD_TO_LATER, REMOVE_FROM_LATER, ADD_TO_PLAYLIST, REMOVE_FROM_PLAYLIST, ADD_TO_WATCHED, REMOVE_FROM_WATCHED } from './reducers';
 
 const GlobalState = props => {
     const InitialSeries = [
@@ -27,46 +27,58 @@ const GlobalState = props => {
         }
     ];
 
-    const [later, laterDispatch] = useReducer(laterReducer, InitialSeries);
-    const [playlist, playlistDispatch] = useReducer(playlistReducer, []);
-    const [watched, watchedDispatch] = useReducer(watchedReducer, []);
+    const InitialState = { later: InitialSeries, playlist: [], watched: [] };
+
+    const [state, dispatch] = useReducer(myReducer, InitialState);
 
     const addToLater = series => {
-        console.log("laterDispatch addToLater");
-        laterDispatch({ type: ADD_TO_LATER, series });
+        console.log("dispatch addToLater");
+        dispatch({ type: ADD_TO_LATER, series });
+        console.log("later in the context:");
+        console.log(state.later);
     };
 
     const removeFromLater = seriesId => {
-        console.log("laterDispatch removeFromLater");
-        laterDispatch({ type: REMOVE_FROM_LATER, seriesId });
+        console.log("dispatch removeFromLater");
+        dispatch({ type: REMOVE_FROM_LATER, seriesId });
+        console.log("later in the context:");
+        console.log(state.later);
     };
 
     const addToPlaylist = series => {
-        console.log("playlistDispatch addToPlaylist");
-        playlistDispatch({ type: ADD_TO_PLAYLIST, series });
+        console.log("dispatch addToPlaylist");
+        dispatch({ type: ADD_TO_PLAYLIST, series });
+        console.log("playlist in the context:");
+        console.log(state.playlist);
     };
 
     const removeFromPlaylist = seriesId => {
-        console.log("playlistDispatch removeFromPlaylist");
-        playlistDispatch({ type: REMOVE_FROM_PLAYLIST, seriesId });
+        console.log("dispatch removeFromPlaylist");
+        dispatch({ type: REMOVE_FROM_PLAYLIST, seriesId });
+        console.log("playlist in the context:");
+        console.log(state.playlist);
     };
 
     const addToWatched = series => {
-        console.log("watchedDispatch addToWatched");
-        watchedDispatch({ type: ADD_TO_WATCHED, series });
+        console.log("dispatch addToWatched");
+        dispatch({ type: ADD_TO_WATCHED, series });
+        console.log("watched in the context:");
+        console.log(state.watched);
     };
 
     const removeFromWatched = seriesId => {
-        console.log("watchedDispatch removeFromWatched");
-        watchedDispatch({ type: REMOVE_FROM_WATCHED, seriesId });
+        console.log("dispatch removeFromWatched");
+        dispatch({ type: REMOVE_FROM_WATCHED, seriesId });
+        console.log("watched in the context:");
+        console.log(state.watched);
     };
 
     return(
         <SeriesContext.Provider 
             value={{
-                later,
-                playlist,
-                watched,
+                later: state.later,
+                playlist: state.playlist,
+                watched: state.watched,
                 addToLater,
                 removeFromLater,
                 addToPlaylist,

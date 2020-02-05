@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import SeriesContext from '../context/series-context';
 import Series from '../components/Series';
-// import { Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 const Watched = props => {
 
@@ -31,7 +31,7 @@ const Watched = props => {
                 ? <h1>No series watched</h1>
                 : seriesList
             }
-            {/* <Button onClick={()=>{console.log(context.later)}}>Show later</Button> */}
+            <Button onClick={()=>{console.log(context.watched)}}>Show watched</Button>
         </div>
     );
 };
