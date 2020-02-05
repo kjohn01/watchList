@@ -27,7 +27,11 @@ const Playlist = props => {
         
     return(
         <div className="d-flex justify-content-center">
-            {seriesList}
+            {
+                context.later.length === 0 
+                ? <h1>No series in the playlist</h1>
+                : seriesList
+            }
             {/* <Button onClick={()=>{console.log(context.later)}}>Show later</Button> */}
         </div>
     );

@@ -26,7 +26,11 @@ const Watched = props => {
         
     return(
         <div className="d-flex justify-content-center">
-            {seriesList}
+            {
+                context.later.length === 0 
+                ? <h1>No series watched</h1>
+                : seriesList
+            }
             {/* <Button onClick={()=>{console.log(context.later)}}>Show later</Button> */}
         </div>
     );
