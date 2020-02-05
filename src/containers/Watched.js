@@ -1,0 +1,35 @@
+import React, { useContext } from 'react';
+import SeriesContext from '../context/series-context';
+import Series from '../components/Series';
+// import { Button } from 'react-bootstrap';
+
+const Watched = props => {
+
+    const context = useContext(SeriesContext);
+    let seriesList = context.watched.map((series, i) => <Series 
+        key={i} 
+        id={series.id} 
+        title={series.title}
+        description={series.description}
+        image={series.image}
+        action1={() => { 
+            context.addToLater(series);
+            context.removeFromWatched(series.id);
+        }}
+        action1Text="Watch Later"
+        action2={() => {
+            context.addToPlaylist(series);
+            context.removeFromWatched(series.id);
+        }}
+        action2Text="Add to playlist"
+        />);
+        
+    return(
+        <div className="d-flex justify-content-center">
+            {seriesList}
+            {/* <Button onClick={()=>{console.log(context.later)}}>Show later</Button> */}
+        </div>
+    );
+};
+
+export default Watched;
