@@ -27,7 +27,7 @@ const Watched = props => {
     return(
         <div className="d-flex justify-content-center">
             {
-                context.later.length === 0 
+                context.watched.length === 0 
                 ? <h1>No series watched</h1>
                 : seriesList
             }

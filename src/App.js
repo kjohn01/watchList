@@ -19,7 +19,7 @@ const App = props => {
         <Router>
           <NavBar />
           <Switch>
-            <Route path="/">
+            <Route exact path="/">
               <Later />
             </Route>
             <Route path="/playlist">
