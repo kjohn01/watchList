@@ -6,8 +6,9 @@ import {
   Route
 } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import Products from "./containers/Products";
-import Cart from "./containers/Cart";
+import Later from "./containers/Later";
+import Playlist from "./containers/Playlist";
+import Watched from "./containers/Watched";
 import GlobalState from "./context/GlobalState";
 import './App.css';
 
@@ -19,10 +20,13 @@ const App = props => {
           <NavBar />
           <Switch>
             <Route path="/">
-              <Products />
+              <Later />
             </Route>
-            <Route path="/cart">
-              <Cart />
+            <Route path="/playlist">
+              <Playlist />
+            </Route>
+            <Route path="/watched">
+              <Watched />
             </Route>
           </Switch>
         </Router>
