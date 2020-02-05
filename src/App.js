@@ -19,15 +19,9 @@ const App = props => {
         <Router>
           <NavBar />
           <Switch>
-            <Route exact path="/">
-              <Later />
-            </Route>
-            <Route path="/playlist">
-              <Playlist />
-            </Route>
-            <Route path="/watched">
-              <Watched />
-            </Route>
+            <Route exact path="/" component={Later} />
+            <Route path="/playlist" component={Playlist} />
+            <Route path="/watched" component={Watched} />
           </Switch>
         </Router>
       </GlobalState>

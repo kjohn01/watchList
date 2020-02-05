@@ -34,43 +34,31 @@ const GlobalState = props => {
     const addToLater = series => {
         console.log("dispatch addToLater");
         dispatch({ type: ADD_TO_LATER, series });
-        console.log("later in the context:");
-        console.log(state.later);
     };
 
     const removeFromLater = seriesId => {
         console.log("dispatch removeFromLater");
         dispatch({ type: REMOVE_FROM_LATER, seriesId });
-        console.log("later in the context:");
-        console.log(state.later);
     };
 
     const addToPlaylist = series => {
         console.log("dispatch addToPlaylist");
         dispatch({ type: ADD_TO_PLAYLIST, series });
-        console.log("playlist in the context:");
-        console.log(state.playlist);
     };
 
     const removeFromPlaylist = seriesId => {
         console.log("dispatch removeFromPlaylist");
         dispatch({ type: REMOVE_FROM_PLAYLIST, seriesId });
-        console.log("playlist in the context:");
-        console.log(state.playlist);
     };
 
     const addToWatched = series => {
         console.log("dispatch addToWatched");
         dispatch({ type: ADD_TO_WATCHED, series });
-        console.log("watched in the context:");
-        console.log(state.watched);
     };
 
     const removeFromWatched = seriesId => {
         console.log("dispatch removeFromWatched");
         dispatch({ type: REMOVE_FROM_WATCHED, seriesId });
-        console.log("watched in the context:");
-        console.log(state.watched);
     };
 
     return(
